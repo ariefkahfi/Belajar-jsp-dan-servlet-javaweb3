@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Login</title>
+</head>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <style>
+        .errors {
+          color:  red;
+          font-weight: bold;
+        }
+    </style>
+
+<body>
+
+    <form >
+        <table>
+            <tr>
+                <td>Username</td>
+                <td><input type="text" id="username" name="username"/></td>
+                <td class="errors" id="e-id"></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="password" id="password" name="password"/></td>
+                <td class="errors" id="e-p"></td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td><input type="submit" value="Login user"/></td>
+            </tr>
+        </table>
+    </form>
+
+
+</body>
+    <script>
+        $(document).ready(function(){
+            $('form').submit(function(){
+               var username = $('#username').val();
+               var pass = $('#password').val();
+
+
+               if(username==='' || pass===''){
+
+                   if(username===''){
+                     $('#e-id').text('Username anda masih kosong');
+                   }else{
+                     $('#e-id').text('');
+                   }
+
+                   if(pass===''){
+                     $('#e-p').text('Password anda masih kosong');
+                   }else{
+                     $('#e-p').text('');
+                   }
+
+                   event.preventDefault();
+               }else{
+                  /*
+                   action="/arief/auth-login" method="post"
+                   */
+                  $('form').attr('action','/arief/auth-login');
+                  $('form').attr('method','POST');
+
+               }
+
+            });
+        });
+    </script>
+</html>
